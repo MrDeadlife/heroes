@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   buscarheroe(termino:string){
     console.log(termino);
     //la pleca se pone para que el sistema no haga un append => si no que lo cargue desde la pagina donde esta
-    this.router.navigate( ['/buscador', termino] );
+    this.router.navigate( ['/buscado', termino] );
   }
 
 }

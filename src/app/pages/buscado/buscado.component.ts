@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import { HeroService } from '../../hero.service';
+import { ActivatedRoute } from '@angular/router';
+import { HeroService, IHero } from '../../hero.service';
 @Component({
   selector: 'app-buscado',
   templateUrl: './buscado.component.html',
@@ -8,23 +8,23 @@ import { HeroService } from '../../hero.service';
 })
 export class BuscadoComponent implements OnInit {
 
-
-  heroes:any[]=[];
-  termino:string;
+  heroes: IHero[];
+  termino: string;
   //dentro del constructor se llaman las importaciones para ser utilizadas dentro del componente donde la llamamos
-  constructor( private activatedroute:ActivatedRoute,
-                private __serviceHero:HeroService          
-    ){
-    
-   }
+  constructor(private activatedroute: ActivatedRoute,
+    private __serviceHero: HeroService
+  ) {
 
-  ngOnInit() 
-  {
-    this.activatedroute.params.subscribe(params =>{
-     this.termino= params['termino'];
+  }
 
+  ngOnInit() {
+    this.activatedroute.params.subscribe(params => {
+      //this.termino = params['termino'];
+      //console.log(params['termino']);
+      
+      //this.__serviceHero.buscarheroe(params['termino']);
       this.heroes = this.__serviceHero.buscarheroe(params['termino']);
-      console.log(this.heroes);
+      //console.log(this.heroes);
     });
   }
 

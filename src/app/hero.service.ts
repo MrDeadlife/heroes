@@ -4,20 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HeroService {
-  private hero:Hero[] =[
+  private heroes: IHero[] = [
     {
       nombre: "Aquaman",
       bio: "El poder más reconocido de Aquaman es la capacidad telepática para comunicarse con la vida marina, la cual puede convocar a grandes distancias.",
       img: "assets/img/aquaman.png",
       aparicion: "1941-11-01",
-      casa:"DC"
+      casa: "DC"
     },
     {
       nombre: "Batman",
       bio: "Los rasgos principales de Batman se resumen en «destreza física, habilidades deductivas y obsesión». La mayor parte de las características básicas de los cómics han variado por las diferentes interpretaciones que le han dado al personaje.",
       img: "assets/img/batman.png",
       aparicion: "1939-05-01",
-      casa:"DC"
+      casa: "DC"
     },
     {
       nombre: "Daredevil",
@@ -31,7 +31,7 @@ export class HeroService {
       bio: "Su principal poder es su capacidad de aumentar su fuerza hasta niveles prácticamente ilimitados a la vez que aumenta su furia. Dependiendo de qué personalidad de Hulk esté al mando en ese momento (el Hulk Banner es el más débil, pero lo compensa con su inteligencia).",
       img: "assets/img/hulk.png",
       aparicion: "1962-05-01",
-      casa:"Marvel"
+      casa: "Marvel"
     },
     {
       nombre: "Linterna Verde",
@@ -54,39 +54,32 @@ export class HeroService {
       aparicion: "1974-11-01",
       casa: "Marvel"
     }
-  
-];
-constructor() { 
-  console.log("servicion listo")
-}
 
-//dentro de los servicios se ejecutan las peticiones ( se llaman las funciones para la extraccion de datos)
-getheroes():Hero[]{
-  return this.hero;
-}
-
-gethero(idx:number){
-  return this.hero[idx];
-}
-
-buscarheroe(termino:string):Hero[]{
-  let heroesArr:Hero[]= [];
-  termino= termino.toLowerCase();
-
-  for (let heroe of this.hero){
-    let nombre = heroe.nombre.toLowerCase();
-    if(nombre.indexOf(termino)>= 0){
-      heroesArr.push(heroe);
-    }
+  ];
+  constructor() {
+    //console.log("servicion listo")
   }
-  return heroesArr;
-}
+
+  //dentro de los servicios se ejecutan las peticiones ( se llaman las funciones para la extraccion de datos)
+  getheroes(): IHero[] {
+    return this.heroes;
+  }
+
+  gethero(idx: number) {
+    return this.heroes[idx];
+  }
+
+  buscarheroe = (termino: string): IHero[] => {
+    return this.heroes.filter((x) => {
+      return x.nombre.toLowerCase().includes(termino);
+    });
+  }
 }
 
-export interface Hero{
-nombre: string;
-bio: string;
-img: string;
-aparicion: string;
-casa: string;
+export interface IHero {
+  nombre: string;
+  bio: string;
+  img: string;
+  aparicion: string;
+  casa: string;
 }
