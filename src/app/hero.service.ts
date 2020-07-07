@@ -70,9 +70,7 @@ export class HeroService {
   }
 
   buscarheroe = (termino: string): IHero[] => {
-    return this.heroes.filter((x) => {
-      return x.nombre.toLowerCase().includes(termino);
-    });
+    return this.heroes.filter(x => x.nombre.toLowerCase().includes(termino));
   }
 }
 
